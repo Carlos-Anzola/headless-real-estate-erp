@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_premium_property" model="ir.actions.act_window">
+        <field name="name">Propiedades Inmobiliarias</field>
+        <field name="res_model">premium.property</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_premium_root" name="Real Estate" sequence="10"/>
+    <menuitem id="menu_premium_property" name="Propiedades" parent="menu_premium_root" action="action_premium_property" sequence="1"/>
+    
+    <!-- Vista de Lista (Tree) -->
+    <record id="view_premium_property_tree" model="ir.ui.view">
+        <field name="name">premium.property.tree</field>
+        <field name="model">premium.property</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'disponible'" decoration-info="state == 'reservada'" decoration-muted="state == 'vendida'">
+                <field name="name"/>
+                <field name="location"/>
+                <field name="price"/>
+                <field name="user_id"/>
+                <field name="state" widget="badge"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario (Form) Profesional -->
+    <record id="view_premium_property_form" model="ir.ui.view">
+        <field name="name">premium.property.form</field>
+        <field name="model">premium.property</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- Barra de Estado Superior -->
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="disponible,reservada,vendida"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Ej. Villa Costa"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Datos Principales">
+                            <field name="price" placeholder="Ej. $850,000"/>
+                            <field name="location" placeholder="Ej. Lechería, Anzoátegui"/>
+                            <field name="img_url" placeholder="URL de la imagen principal"/>
+                        </group>
+                        <group string="Gestión Interna">
+                            <field name="user_id"/>
+                            <field name="commission_pct"/>
+                            <field name="active" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detalles Físicos">
+                            <group>
+                                <field name="beds"/>
+                                <field name="baths"/>
+                                <field name="parking"/>
+                            </group>
+                        </page>
+                        <page string="Textos para la Web">
+                            <group>
+                                <field name="desc" placeholder="Descripción corta para la tarjeta..."/>
+                                <field name="long_desc" placeholder="Descripción detallada para el modal..."/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <!-- El Chatter (Historial y Documentos) -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>
