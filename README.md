@@ -5,7 +5,7 @@ Una solución de gestión inmobiliaria de extremo a extremo que separa una exper
 ## 🚀 Arquitectura
 Este proyecto utiliza una arquitectura *Headless* compuesta por dos módulos principales:
 - **Frontend (Web):** Construido con **Svelte**, ofreciendo una interfaz de usuario reactiva, moderna y de carga instantánea para la exhibición de propiedades.
-- **Backend (ERP/CRM):** Servidor personalizado de **Odoo 17** corriendo en **Docker** (junto a PostgreSQL), que expone una API REST para el frontend.
+- **Backend (ERP/CRM):** Servidor personalizado de **Odoo 16** corriendo en **Docker** (junto a PostgreSQL), que expone una API REST para el frontend.
 
 ## ✨ Características Principales
 - **Sincronización en tiempo real:** Las propiedades marcadas como "Vendidas" o "Reservadas" en el ERP desaparecen del frontend automáticamente.
